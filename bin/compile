@@ -15,10 +15,12 @@ BUILDPACK_PHANTOMJS_PACKAGE=https://bitbucket.org/ariya/phantomjs/downloads/${FI
 BUILDPACK_PHANTOMJS_PACKAGE=https://github.com/evangalen/phantomjs-bin/blob/master/bin/linux/x64/phantomjs?raw=true
 
 mkdir -p $CACHE_DIR
+mkdir -p $BUILD_DIR
+mkdir -p $BUILD_DIR/vendor
+mkdir -p $BUILD_DIR/vendor/phantomjs
+mkdir -p $BUILD_DIR/vendor/phantomjs/bin
 if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
   echo "-----> Fetching PhantomJS ${VERSION} binaries at ${BUILDPACK_PHANTOMJS_PACKAGE}"
-  mkdir -p $BUILD_DIR/vendor
-  mkdir -p $BUILD_DIR/vendor/bin
   curl $BUILDPACK_PHANTOMJS_PACKAGE -L -s -o $BUILD_DIR/vendor/phantomjs/bin/phantomjs
 fi
 
@@ -26,7 +28,7 @@ fi
 #mkdir -p $CACHE_DIR/$ARCHIVE_NAME
 # mkdir -p $BUILD_DIR/vendor
 #tar jxf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR
-#mv $CACHE_DIR/$FILE_NAME $BUILD_DIR/vendor/phantomjs
+mv $CACHE_DIR/$FILE_NAME $BUILD_DIR/vendor/phantomjs
 
 echo "-----> exporting PATH and LIBRARY_PATH"
 PROFILE_PATH="$BUILD_DIR/.profile.d/phantomjs.sh"
