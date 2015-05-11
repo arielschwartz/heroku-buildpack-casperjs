@@ -17,7 +17,7 @@ BUILDPACK_PHANTOMJS_PACKAGE=https://github.com/evangalen/phantomjs-bin/blob/mast
 mkdir -p $CACHE_DIR
 if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
   echo "-----> Fetching PhantomJS ${VERSION} binaries at ${BUILDPACK_PHANTOMJS_PACKAGE}"
-  curl $BUILDPACK_PHANTOMJS_PACKAGE -L -s -o $BUILD_DIR/vendor/phantomjs
+  curl $BUILDPACK_PHANTOMJS_PACKAGE -L -s -o $BUILD_DIR/vendor/phantomjs/bin/phantomjs
 fi
 
 #echo "-----> Extracting PhantomJS ${VERSION} binaries to ${BUILD_DIR}/vendor/phantomjs"
